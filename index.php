@@ -20,4 +20,3 @@ switch ($action) {
     default:
 
 }
-?>

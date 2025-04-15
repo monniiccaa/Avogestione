@@ -1,18 +1,23 @@
 <?php
 
 
-// TODO: Fare Il User Model
-// require_once 'Models/UserModel.php'
-
 class AuthController
 {
+    /* TODO: Completare Quando I model e i view sono aggiornati */
     static function login()
     {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $username = $_POST["username"];
-            $password = $_POST["password"];
+    }
 
+    static function logout()
+    {
+    }
 
-        }
+    static function register()
+    {
+    }
+
+    static function requireLogin()
+    {
     }
 }
+

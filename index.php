@@ -1,23 +1,23 @@
 <?php
-    require_once 'controller/AuthController.php';
-    require_once 'controller/CorsiController.php';
-    require_once 'controller/IscrizioniController.php';
+require_once 'controllers/AuthController.php';
+require_once 'controllers/CorsiController.php';
+require_once 'controllers/IscrizioniController.php';
 
-    session_start();
+session_start();
 
-    $action = $_GET['action'] ?? 'index';
+$action = $_GET['action'] ?? 'index';
 
-    switch ($action) {
-        case 'login':
-            AuthController::login();
-            break;
-        case 'logout':
-            AuthController::logout();
-            break;
-        case 'register':
-            AuthController::register();
-            break;
-        default:
-            
-    }
+switch ($action) {
+    case 'login':
+        AuthController::login();
+        break;
+    case 'logout':
+        AuthController::logout();
+        break;
+    case 'register':
+        AuthController::register();
+        break;
+    default:
+
+}
 ?>

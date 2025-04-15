@@ -4,19 +4,19 @@
 class AuthController
 {
     /* TODO: Completare Quando I model e i view sono aggiornati */
-    static function login()
+    public static function login()
     {
     }
 
-    static function logout()
+    public static function logout()
     {
     }
 
-    static function register()
+    public static function register()
     {
     }
 
-    static function requireLogin()
+    public static function requireLogin()
     {
         if (!isset($_SESSION['id'])) {
             header('location: index.php?action=login');

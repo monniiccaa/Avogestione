@@ -18,5 +18,6 @@ switch ($action) {
         AuthController::register();
         break;
     default:
+        AuthController::requireLogin();
 
 }

@@ -18,6 +18,10 @@ class AuthController
 
     static function requireLogin()
     {
+        if (!isset($_SESSION['id'])) {
+            header('location: index.php?action=login');
+        }
+
     }
 }
 

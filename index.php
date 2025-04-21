@@ -20,4 +20,5 @@ switch ($action) {
     default:
         AuthController::requireLogin();
 
+
 }

@@ -3,6 +3,7 @@
 
 class AuthController
 {
+	
     /* TODO: Completare Quando I model e i view sono aggiornati */
     public static function login()
     {
@@ -18,6 +19,7 @@ class AuthController
         }
 
         /* TODO: MOSTRARE IL FORM DEL LOGIN */
+		require_once 'views/login.php';
     }
 
     public static function logout()
@@ -38,6 +40,7 @@ class AuthController
         }
 
         /* TODO: mostrare il form del login */
+		require_once 'views/registrazione.php';
     }
 
     public static function requireLogin()

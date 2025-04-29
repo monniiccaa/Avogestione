@@ -49,8 +49,15 @@
             require 'views/corsi_form.php';
         }
 
-        public static function delete () {
+        public static function delete ($cod) {
+            $corso = Corsi::getById($cod);
             
+            if ($corso && $corso->delete()) {
+                header('Location:index.php');
+                exit();
+            } else {
+                echo "Errore nell'eliminazione del corso";
+            }
         }
     }
 ?>

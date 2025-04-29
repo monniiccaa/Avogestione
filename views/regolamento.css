@@ -1,0 +1,24 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 100px black;
+    border: 10px solid #003566;
+    padding: 50px;
+    line-height: 1.6;
+    background-color: #FFD60A;
+}
+h1 {
+    text-align: center;
+    color: #001D3D;
+}
+h2 {
+    color: #003566;
+}
+ul {
+    margin-top: 0;
+}
+li {
+    margin-bottom: 10px;
+}
+.signature {
+    margin-top: 40px;
+}

@@ -24,6 +24,8 @@ class AuthController
     {
         session_unset();
         session_destroy();
+        header('Location: index.php?action=login');
+        exit();
     }
 
     public static function register()
@@ -41,7 +43,7 @@ class AuthController
     public static function requireLogin()
     {
         if (!isset($_SESSION['id'])) {
-            header('location: index.php?action=login');
+            header('Location: index.php?action=login');
         }
 
     }

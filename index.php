@@ -18,6 +18,7 @@ switch ($action) {
         AuthController::register();
         break;
     default:
+        AuthController::requireLogin();
 		require_once 'views/homePage.html';
 		
 }

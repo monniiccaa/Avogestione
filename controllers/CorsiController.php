@@ -11,10 +11,13 @@
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $titolo = $_POST['titolo'];
                 $descrizione = $_POST['descrizione'];
+                $maxPartecipanti = $_POST['max'];
+                $dataEOra = $_POST['date'];
+                $aula = $_POST['aula'];
                 
-                $corso = new Corsi ($titolo, $descrizione);
+                $corso = new Corsi ();
 
-                if ($corso->save()) {
+                if ($corso->create($titolo, $descrizione, $maxPartecipanti, $dataEOra, $aula)) {
                     header('Location:index.php');
                     exit();
                 } else {
@@ -25,7 +28,7 @@
         }
 
         public static function update ($cod) {
-            $corso = Corsi::getById($cod);
+            $corso = Corsi::getByCod($cod);
 
             if (!$corso) {
                 die ('Libro non trovato.');

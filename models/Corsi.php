@@ -3,25 +3,13 @@
 require_once 'conn.php';
 class Corsi
 {
-    private $id;
-    private $titolo;
-    private $descrizione;
-    private $maxPartecipanti;
-    private $dataEOra;
-    private $aula;
     private $idOrganizzatore;
 
     // quanto sono bravo a usare visual studio
 
-    public function __construct($id, $titolo, $descrizione, $maxPartecipanti, $dataEOra, $aula, $idOrganizzatore)
+    public function __construct()
     {
-        $this->id = $id;
-        $this->titolo = $titolo;
-        $this->descrizione = $descrizione;
-        $this->maxPartecipanti = $maxPartecipanti;
-        $this->dataEOra = $dataEOra;
-        $this->aula = $aula;
-        $this->idOrganizzatore = $idOrganizzatore;
+        $this->idOrganizzatore = $_SESSION['id'];
     }
 
     public static function create($titolo, $descrizione, $maxPartecipanti, $dataEOra, $aula)
@@ -32,7 +20,7 @@ class Corsi
         $stmt->bindParam(":Descrizione", $descrizione, PDO::PARAM_STR);
         $stmt->bindParam(":DataEOra", $dataEOra, PDO::PARAM_STR);
         $stmt->bindParam(":maxPartecipanti", $maxPartecipanti, PDO::PARAM_STR);
-        $stmt->bindParam(":IdOrganizzatore", $_SESSION["user_id"], PDO::PARAM_INT);
+        $stmt->bindParam(":IdOrganizzatore", $_SESSION["id"], PDO::PARAM_INT);
         $stmt->bindParam(":Aula", $aula, PDO::PARAM_STR);
         return $stmt->execute();
     }

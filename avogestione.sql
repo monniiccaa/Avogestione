@@ -28,12 +28,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `corsi` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `titolo` varchar(255) NOT NULL,
   `descrizione` varchar(255) NOT NULL,
   `dataEORA` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `maxPartecipanti` int(11) NOT NULL,
-  `idOrganizzatore` int(11) NOT NULL,
+  `idOrganizzatore` int(11) NOT NULLs,
   `aula` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

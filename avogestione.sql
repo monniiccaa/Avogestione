@@ -4,7 +4,7 @@ USE AvoGestione;
 
 CREATE TABLE users
 (
-    id       int(11)                           NOT NULL,
+    id       int(11) PRIMARY KEY AUTO_INCREMENT,
     username varchar(255)                      NOT NULL,
     password varchar(255)                      NOT NULL,
     ruolo    enum ('Organizzatore','Studente') NOT NULL
@@ -12,7 +12,7 @@ CREATE TABLE users
 
 CREATE TABLE corsi
 (
-    id              int(11)      NOT NULL PRIMARY KEY,
+    id              int(11)      NOT NULL PRIMARY KEY AUTO_INCREMENT,
     titolo          varchar(255) NOT NULL UNIQUE,
     descrizione     varchar(255) NOT NULL,
     dataEORA        timestamp    NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
@@ -26,3 +26,4 @@ CREATE TABLE iscrizioni
     userId  int(11) NOT NULL REFERENCES users (id),
     corsoId int(11) NOT NULL REFERENCES corsi (id)
 );
+

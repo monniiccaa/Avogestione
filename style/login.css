@@ -16,9 +16,14 @@ h3 {
 
 form {
     border: 1px black;
+    text-align-last: center;
 }
 
 p {
     font-family: verdana, serif;
     font-size: 20px;
+}
+
+header {
+    text-align: center;
 }

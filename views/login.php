@@ -16,13 +16,13 @@
 <h3>INSERISCI I TUOI DATI PER CONTINUARE</h3>
 
 
-<form>
+<form method="post" action="index.php?action=login">
     <label for="username">Username:</label><br>
     <input type="text" id="username" name="username"><br>
     <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password">
+    <input type="password" id="password" name="password"><br>
     <label for="ruolo">Ruolo:</label><br>
-    <input type="text" id="ruolo" name="ruolo">
+    <input type="text" id="ruolo" name="ruolo"><br>
     <input type="submit" value="Invio">
 </form>
 

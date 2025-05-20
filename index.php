@@ -11,6 +11,18 @@ switch ($action) {
     case 'login':
         AuthController::login();
         break;
+
+    case 'create':
+        AuthController::HasRole(Roles::ADMIN);
+        CorsiController::create();
+        break;
+
+    case 'delete':
+        AuthController::HasRole(Roles::ADMIN);
+        CorsiController::delete($_GET['cod']);
+        break;
+
+
     case 'logout':
         AuthController::logout();
         break;
@@ -18,7 +30,8 @@ switch ($action) {
         AuthController::register();
         break;
     default:
-        //AuthController::requireLogin();
-		require_once 'views/homePage.html';
-		
+        require_once 'views/homePage.html';
+        break;
+
+
 }

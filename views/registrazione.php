@@ -13,13 +13,13 @@
 
 <form method="post" action="index.php?action=register">
     <label for="username">Username:</label><br>
-    <input type="text" id="username" name="username"><br>
+    <input type="text" id="username" name="username" required><br>
     <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password">
+    <input type="password" id="password" name="password" required>
     <label for="ruolo">Ruolo</label>
-    <select name="ruolo" id="ruolo">
+    <select name="ruolo" id="ruolo" required>
         <option value="organizzatore">Organizzatore</option>
-        <option value="studente">Studente</option>
+        <option value="studente" selected>Studente</option>
     </select>
     <input type="submit" value="Invio">
 </form>

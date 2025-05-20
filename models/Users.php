@@ -4,6 +4,7 @@ require_once 'conn.php';
 
 class Users
 {
+
     public static function getByUsername($username)
     {
         global $conn;

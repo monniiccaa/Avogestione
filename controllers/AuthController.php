@@ -1,29 +1,28 @@
 <?php
 
-require_once 'Roles.php';
-
+require_once 'enums/Roles.php';
+require_once 'models/Users.php';
 
 class AuthController
 {
 
-    /* TODO: Completare Quando I model e i view sono aggiornati */
     public static function login()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $username = $_POST['username'];
             $password = $_POST['password'];
-            $ruolo = $_POST['ruolo'];
+            if (Users::verifyPassword($username, $password)) {
+                $user = Users::getByUsername($username);
 
-            // TODO: CHECK PASSWORD
-            $_SESSION['id'] = /* TODO: mettere ID vero */
-                69;
-            $_SESSION['username'] = $username;
-            $_SESSION['ruolo'] = $ruolo;
+                $_SESSION['id'] = $user['id'];
+                $_SESSION['username'] = $user['username'];
+                $_SESSION['ruolo'] = $user['ruolo'];
+                header('Location: index.php?action=home');
+            }
 
-            header('Location: index.php?action=home');
+            echo "<p> Username o password errata </p>";
         }
 
-        /* TODO: MOSTRARE IL FORM DEL LOGIN */
         require_once 'views/login.php';
     }
 
@@ -41,12 +40,11 @@ class AuthController
             $username = $_POST['username'];
             $password = $_POST['password'];
             $ruolo = $_POST['ruolo'];
-            // TODO: Salvare su DB
 
+            Users::register($username, $password, $ruolo);
             header("Location: index.php?action=login");
         }
 
-        /* TODO: mostrare il form del login */
         require_once 'views/registrazione.php';
     }
 

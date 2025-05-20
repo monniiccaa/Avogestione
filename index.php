@@ -13,12 +13,12 @@ switch ($action) {
         break;
 
     case 'create':
-        AuthController::HasRole(Roles::ADMIN);
+        AuthController::HasRole(Roles::ORGANIZZATORE);
         CorsiController::create();
         break;
 
     case 'delete':
-        AuthController::HasRole(Roles::ADMIN);
+        AuthController::HasRole(Roles::ORGANIZZATORE);
         CorsiController::delete($_GET['cod']);
         break;
 

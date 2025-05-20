@@ -11,7 +11,7 @@
 <h2>BENVENUTO</h2>
 <h3>INSERISCI I TUOI DATI PER REGISTRATI</h3>
 
-<form>
+<form method="post" action="index.php?action=register">
     <label for="username">Username:</label><br>
     <input type="text" id="username" name="username"><br>
     <label for="password">Password:</label><br>

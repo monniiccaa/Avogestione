@@ -1,3 +1,8 @@
+CREATE USER AvoGestione IDENTIFIED BY 'AvoGestione';
+
+GRANT SELECT, DELETE, INSERT, UPDATE ON AvoGestione.* TO AvoGestione;
+
+
 CREATE DATABASE AvoGestione;
 
 USE AvoGestione;

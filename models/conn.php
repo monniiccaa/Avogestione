@@ -1,7 +1,7 @@
 <?php
 $dsn = "mysql:host=localhost;dbname=avogestione;charset=utf8";
-$user = "root";
-$password = "root";
+$user = "AvoGestione";
+$password = "AvoGestione";
 try {
     $conn = new PDO($dsn, $user, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

@@ -2,14 +2,14 @@
 
 enum Roles: string
 {
-    case STUDENTE = "studente";
-    case ORGANIZZATORE = "organizzatore";
+    case STUDENTE = "Studente";
+    case ORGANIZZATORE = "Organizzatore";
 
     public function getName(): string
     {
         return match ($this) {
-            Roles::STUDENTE => "studente",
-            Roles::ORGANIZZATORE => "organizzatore"
+            Roles::STUDENTE => "Studente",
+            Roles::ORGANIZZATORE => "Organizzatore"
         };
 
     }

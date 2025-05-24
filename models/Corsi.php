@@ -1,16 +1,67 @@
 <?php
 
 require_once 'conn.php';
+
 class Corsi
 {
-    private $idOrganizzatore;
 
-    public function __construct()
+    private int $id;
+    private string $titolo;
+    private string $descrizione;
+    private string $dataEOra;
+    private int $maxPartecipanti;
+    private int $idOrganizzatore;
+    private string $aula;
+
+
+    public function __construct($id, $titolo, $descrizione, $dataEOra, $maxPartecipanti, $idOrganizzatore, $aula)
     {
-        $this->idOrganizzatore = $_SESSION['id'];
+        $this->id = $id;
+        $this->titolo = $titolo;
+        $this->descrizione = $descrizione;
+        $this->dataEOra = $dataEOra;
+        $this->maxPartecipanti = $maxPartecipanti;
+        $this->idOrganizzatore = $idOrganizzatore;
+        $this->aula = $aula;
     }
 
-    public static function create($titolo, $descrizione, $maxPartecipanti, $dataEOra, $aula)
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getTitolo(): string
+    {
+        return $this->titolo;
+    }
+
+    public function getDescrizione(): string
+    {
+        return $this->descrizione;
+    }
+
+    public function getDataEOra(): string
+    {
+        return $this->dataEOra;
+    }
+
+    public function getMaxPartecipanti(): int
+    {
+        return $this->maxPartecipanti;
+    }
+
+    public function getAula(): string
+    {
+        return $this->aula;
+    }
+
+    public function getIdOrganizzatore()
+    {
+        return $this->idOrganizzatore;
+    }
+
+
+    public static function create($titolo, $descrizione, $maxPartecipanti, $dataEOra, $aula): bool
     {
         global $conn;
         $stmt = $conn->prepare("INSERT INTO corsi (titolo,descrizione,dataEOra,maxPartecipanti,idOrganizzatore,aula) VALUES (:Titolo,:Descrizione,:DataEOra,:maxPartecipanti,:IdOrganizzatore,:Aula)");
@@ -23,26 +74,29 @@ class Corsi
         return $stmt->execute();
     }
 
-    public static function getAll()
+    public static function getAll(): array
     {
         global $conn;
         $stmt = $conn->prepare("SELECT * FROM corsi ");
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $corsi = array();
+        foreach ($result as $row) {
+            $corsi[] = new Corsi($row["id"], $row["titolo"], $row["descrizione"], $row["dataEOra"], $row["maxPartecipanti"], $row["idOrganizzatore"], $row["aula"]);
+        }
+        return $corsi;
     }
 
-    public static function getByTitle($titolo)
+    public static function getByTitle($titolo): Corsi
     {
         global $conn;
         $stmt = $conn->prepare("SELECT * FROM corsi WHERE titolo=:titolo");
         $stmt->bindParam(":titolo", $titolo, PDO::PARAM_STR);
         $stmt->execute();
-        if ($result = $stmt->fetch(PDO::FETCH_ASSOC)){
-            return $result['id'];
-        } else {
-            return false;
-        }
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return new Corsi($result["id"], $result["titolo"], $result["descrizione"], $result["dataEOra"], $result["maxPartecipanti"], $result["idOrganizzatore"], $result["aula"]);
     }
+
     public static function delete($id)
     {
         global $conn;
@@ -54,7 +108,7 @@ class Corsi
     public static function update($cod, $titolo, $descrizione, $maxPartecipanti, $dataEOra, $aula)
     {
         global $conn;
-        $stmt = $conn->prepare("UPDATE corsi SET titolo=:titolo,descrizione=:descrizione,maxPartecipanti=:maxPartecipanti,dataEOra=:dataEOra,aula=:aula WHERE cod=:cod");
+        $stmt = $conn->prepare("UPDATE corsi SET titolo=:titolo,descrizione=:descrizione,maxPartecipanti=:maxPartecipanti,dataEOra=:dataEOra,aula=:aula WHERE id=:cod");
         $stmt->bindParam(":cod", $cod, PDO::PARAM_STR);
         $stmt->bindParam(":titolo", $titolo, PDO::PARAM_STR);
         $stmt->bindParam(":descrizione", $descrizione, PDO::PARAM_STR);
@@ -64,8 +118,5 @@ class Corsi
         return $stmt->execute();
     }
 
-    public function getIdOrganizzatore()
-    {
-        return $this->idOrganizzatore;
-    }
+
 }

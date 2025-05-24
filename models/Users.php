@@ -4,31 +4,58 @@ require_once 'conn.php';
 
 class Users
 {
+    private int $id;
+    private string $username;
+    private string $password;
+    private string $ruolo;
 
-    public static function getByUsername($username)
+    public function __construct(int $id, string $username, string $password, string $role)
+    {
+        $this->id = $id;
+        $this->username = $username;
+        $this->password = $password;
+        $this->ruolo = $role;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function getRuolo(): string
+    {
+        return $this->ruolo;
+    }
+
+
+    public static function getByUsername($username): Users
     {
         global $conn;
         $stmt = $conn->prepare("SELECT * FROM users WHERE username=:username");
-        $stmt->bindParam(":username", $username, PDO::PARAM_STR);
+        $stmt->bindParam(":username", $username);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return new Users($result["id"], $result['username'], $result['password'], $result['ruolo']);
     }
 
-    public static function register($username, $password, $role)
+    public static function register($username, $password, $role): void
     {
         global $conn;
         $stmt = $conn->prepare("INSERT INTO users(username,password,ruolo) VALUES(:username,:password,:ruolo)");
-        $stmt->bindParam(":username", $username, PDO::PARAM_STR);
+        $stmt->bindParam(":username", $username);
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
-        $stmt->bindParam(":password", $password_hash, PDO::PARAM_STR);
-        $stmt->bindParam(":ruolo", $role, PDO::PARAM_STR);
-        return $stmt->execute();
-    }
-
-    public static function verifyPassword($username, $password)
-    {
-        global $conn;
-        $user = self::getByUsername($username);
-        return $user && password_verify($password, $user["password"]);
+        $stmt->bindParam(":password", $password_hash);
+        $stmt->bindParam(":ruolo", $role);
+        $stmt->execute();
     }
 }

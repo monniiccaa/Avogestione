@@ -6,17 +6,17 @@ require_once 'models/Users.php';
 class AuthController
 {
 
-    public static function login()
+    public static function login(): void
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $username = $_POST['username'];
             $password = $_POST['password'];
-            if (Users::verifyPassword($username, $password)) {
-                $user = Users::getByUsername($username);
+            $user = Users::getByUsername($username, $password);
 
-                $_SESSION['id'] = $user['id'];
-                $_SESSION['username'] = $user['username'];
-                $_SESSION['ruolo'] = $user['ruolo'];
+            if (password_verify($password, $user->getPassword())) {
+                $_SESSION['id'] = $user->getId();
+                $_SESSION['username'] = $user->getUsername();
+                $_SESSION['ruolo'] = $user->getRuolo();
                 header('Location: index.php?action=home');
             }
 
@@ -26,15 +26,14 @@ class AuthController
         require_once 'views/login.php';
     }
 
-    public static function logout()
+    public static function logout(): void
     {
         session_unset();
         session_destroy();
         header('Location: index.php?action=login');
-        exit();
     }
 
-    public static function register()
+    public static function register(): void
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $username = $_POST['username'];
@@ -42,22 +41,23 @@ class AuthController
             $ruolo = $_POST['ruolo'];
 
             Users::register($username, $password, $ruolo);
+
             header("Location: index.php?action=login");
         }
 
         require_once 'views/registrazione.php';
     }
 
-    public static function HasRole(Roles $ruolo)
+    public static function HasRole(Roles $ruolo): void
     {
         AuthController::requireLogin();
         if ($ruolo != Roles::from($_SESSION['ruolo'])) {
-            echo '<p>Accesso Negato </p>';
+            echo '<p>Accesso Negato</p>';
             exit();
         }
     }
 
-    public static function requireLogin()
+    public static function requireLogin(): void
     {
         if (!isset($_SESSION['id'])) {
             header('Location: index.php?action=login');

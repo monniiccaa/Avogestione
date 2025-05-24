@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 
 <head>
     <meta charset="utf-8">
@@ -15,12 +15,12 @@
     <label for="username">Username:</label><br>
     <input type="text" id="username" name="username" required><br>
     <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password" required>
+    <input type="password" id="password" name="password" required> <br>
     <label for="ruolo">Ruolo</label>
     <select name="ruolo" id="ruolo" required>
         <option value="organizzatore">Organizzatore</option>
         <option value="studente" selected>Studente</option>
-    </select>
+    </select> <br>
     <input type="submit" value="Invio">
 </form>
 

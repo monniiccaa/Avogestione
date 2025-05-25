@@ -12,6 +12,21 @@ switch ($action) {
         AuthController::login();
         break;
 
+    case 'corsi':
+        AuthController::requireLogin();
+        CorsiController::showAll();
+        break;
+
+    case 'getCorsiOfUserJson':
+        AuthController::HasRole(Roles::ORGANIZZATORE);
+        CorsiController::getCorsiOfUserJson();
+        break;
+
+    case 'update':
+        AuthController::HasRole(Roles::ORGANIZZATORE);
+        CorsiController::update();
+        break;
+
     case 'create':
         AuthController::HasRole(Roles::ORGANIZZATORE);
         CorsiController::create();
@@ -19,7 +34,7 @@ switch ($action) {
 
     case 'delete':
         AuthController::HasRole(Roles::ORGANIZZATORE);
-        CorsiController::delete($_GET['cod']);
+        CorsiController::delete();
         break;
 
 

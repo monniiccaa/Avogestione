@@ -2,7 +2,7 @@
 
 require_once 'conn.php';
 
-class Corsi
+class Corsi implements JsonSerializable
 {
 
     private int $id;
@@ -61,18 +61,19 @@ class Corsi
     }
 
 
-    public static function create($titolo, $descrizione, $maxPartecipanti, $dataEOra, $aula): bool
+    public static function create($titolo, $descrizione, $maxPartecipanti, $dataEOra, $idOrganizzatore, $aula): bool
     {
         global $conn;
         $stmt = $conn->prepare("INSERT INTO corsi (titolo,descrizione,dataEOra,maxPartecipanti,idOrganizzatore,aula) VALUES (:Titolo,:Descrizione,:DataEOra,:maxPartecipanti,:IdOrganizzatore,:Aula)");
-        $stmt->bindParam(":Titolo", $titolo, PDO::PARAM_STR);
-        $stmt->bindParam(":Descrizione", $descrizione, PDO::PARAM_STR);
-        $stmt->bindParam(":DataEOra", $dataEOra, PDO::PARAM_STR);
-        $stmt->bindParam(":maxPartecipanti", $maxPartecipanti, PDO::PARAM_STR);
-        $stmt->bindParam(":IdOrganizzatore", $_SESSION["id"], PDO::PARAM_INT);
-        $stmt->bindParam(":Aula", $aula, PDO::PARAM_STR);
+        $stmt->bindParam(":Titolo", $titolo);
+        $stmt->bindParam(":Descrizione", $descrizione);
+        $stmt->bindParam(":DataEOra", $dataEOra);
+        $stmt->bindParam(":maxPartecipanti", $maxPartecipanti);
+        $stmt->bindParam(":IdOrganizzatore", $idOrganizzatore, PDO::PARAM_INT);
+        $stmt->bindParam(":Aula", $aula);
         return $stmt->execute();
     }
+
 
     public static function getAll(): array
     {
@@ -82,7 +83,7 @@ class Corsi
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $corsi = array();
         foreach ($result as $row) {
-            $corsi[] = new Corsi($row["id"], $row["titolo"], $row["descrizione"], $row["dataEOra"], $row["maxPartecipanti"], $row["idOrganizzatore"], $row["aula"]);
+            $corsi[] = new Corsi($row["id"], $row["titolo"], $row["descrizione"], $row["dataEORA"], $row["maxPartecipanti"], $row["idOrganizzatore"], $row["aula"]);
         }
         return $corsi;
     }
@@ -95,6 +96,20 @@ class Corsi
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return new Corsi($result["id"], $result["titolo"], $result["descrizione"], $result["dataEOra"], $result["maxPartecipanti"], $result["idOrganizzatore"], $result["aula"]);
+    }
+
+    public static function getCorsiOfUser(int $idUser): array
+    {
+        global $conn;
+        $stmt = $conn->prepare("SELECT * FROM corsi WHERE idOrganizzatore=:idUser");
+        $stmt->bindParam(":idUser", $idUser, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $corsi = array();
+        foreach ($result as $row) {
+            $corsi[] = new Corsi($row["id"], $row["titolo"], $row["descrizione"], $row["dataEORA"], $row["maxPartecipanti"], $row["idOrganizzatore"], $row["aula"]);
+        }
+        return $corsi;
     }
 
     public static function delete($id)
@@ -119,4 +134,16 @@ class Corsi
     }
 
 
+    public function jsonSerialize(): mixed
+    {
+        return [
+            'id' => $this->id,
+            'titolo' => $this->titolo,
+            'descrizione' => $this->descrizione,
+            'dataEOra' => $this->dataEOra,
+            'maxPartecipanti' => $this->maxPartecipanti,
+            'idOrganizzatore' => $this->idOrganizzatore,
+            'aula' => $this->aula
+        ];
+    }
 }

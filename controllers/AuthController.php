@@ -11,7 +11,7 @@ class AuthController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $username = $_POST['username'];
             $password = $_POST['password'];
-            $user = Users::getByUsername($username, $password);
+            $user = Users::getByUsername($username);
 
             if (password_verify($password, $user->getPassword())) {
                 $_SESSION['id'] = $user->getId();

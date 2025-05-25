@@ -48,6 +48,16 @@ class Users
         return new Users($result["id"], $result['username'], $result['password'], $result['ruolo']);
     }
 
+    public static function getById($id): Users
+    {
+        global $conn;
+        $stmt = $conn->prepare("SELECT * FROM users WHERE id=:id");
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return new Users($result["id"], $result['username'], $result['password'], $result['ruolo']);
+    }
+
     public static function register($username, $password, $role): void
     {
         global $conn;

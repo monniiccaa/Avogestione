@@ -5,10 +5,48 @@
     <title>Corsi</title>
 
     <style>
-        tr, td, th {
-            border: 1px solid black;
-            text-align: center;
+        body {
+            background-color: #FFC300;
         }
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+            background-color: #ffcc00; /* Giallo principale */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid #0066cc; /* Blu accento */
+        }
+
+        th {
+            background-color: #0066cc; /* Blu accento */
+            color: white;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: #ffdd44; /* Tonalità più chiara di giallo per alternare le righe */
+        }
+
+        tr:hover {
+            background-color: #ffee88; /* Highlight quando si passa sopra */
+        }
+
+        td {
+            color: #333;
+        }
+
+        table {
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
     </style>
 </head>
 <body>
@@ -31,7 +69,9 @@
     </tr>
 
     <?php /** @var Corsi $corso */
-    foreach ($corsi as $corso): ?>
+    foreach ($corsi
+
+    as $corso): ?>
     <tr>
         <td><?= $corso->getTitolo() ?></td>
         <td><?= $corso->getDescrizione() ?></td>

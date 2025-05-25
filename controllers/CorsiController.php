@@ -8,6 +8,10 @@ class CorsiController
     public static function showAll(): void
     {
         $corsi = Corsi::getAll();
+        if (empty($corsi)) {
+            echo "Nessuno corso trovato";
+            exit();
+        }
         require 'views/ViewCorsi.php';
     }
 
@@ -15,8 +19,9 @@ class CorsiController
     {
         header("Content-type: application/json");
         $corsi = Corsi::getCorsiOfUser($_SESSION["id"]);
-        echo json_encode($corsi, JSON_THROW_ON_ERROR);
+        echo json_encode($corsi);
     }
+
 
     public static function create(): void
     {
@@ -63,6 +68,10 @@ class CorsiController
 
 
         $corsi = Corsi::getCorsiOfUser($_SESSION['id']);
+        if (empty($corsi)) {
+            echo "<p>Non hai nessun corso da modificare. Crea uno <a href='index.php?action=create'>qui!</a></p>";
+            exit();
+        }
         $action = "update";
         require_once 'views/FormCorsi.php';
     }
@@ -81,6 +90,10 @@ class CorsiController
         }
 
         $corsi = Corsi::getCorsiOfUser($_SESSION['id']);
+        if (empty($corsi)) {
+            echo "<p>Non hai nessun corso da Eliminare. Crea uno <a href='index.php?action=create'>qui!</a></p>";
+            exit();
+        }
         require_once 'views/DeleteCorsi.php';
 
     }

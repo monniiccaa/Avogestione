@@ -45,7 +45,7 @@ switch ($action) {
         AuthController::register();
         break;
     default:
-        require_once 'views/homePage.html';
+        require_once 'views/homePage.php';
         break;
 
 

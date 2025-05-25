@@ -11,7 +11,7 @@ class CorsiController
         require 'views/ViewCorsi.php';
     }
 
-    public static function getCorsiOfUserJson()
+    public static function getCorsiOfUserJson(): void
     {
         header("Content-type: application/json");
         $corsi = Corsi::getCorsiOfUser($_SESSION["id"]);
@@ -70,10 +70,9 @@ class CorsiController
     public static function delete(): void
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $title = $_POST['title'];
-            $corso = Corsi::getByTitle($title);
+            $id = $_POST['id'];
 
-            if (Corsi::delete($corso->getId())) {
+            if (Corsi::delete($id)) {
                 header('Location:index.php');
                 exit();
             } else {
@@ -81,7 +80,9 @@ class CorsiController
             }
         }
 
+        $corsi = Corsi::getCorsiOfUser($_SESSION['id']);
+        require_once 'views/DeleteCorsi.php';
+
     }
 }
 
-?>

@@ -10,8 +10,12 @@
 <div class="header">
     <div class="regione">
         <h1>Ministero dell'Istruzione e del Merito</h1>
-        <a href="index.php?action=login"><input type="submit" value="Login"></a>
-        <a href="index.php?action=register"><input type="submit" value="Register"></a>
+        <?php if (!isset($_SESSION["id"])): ?>
+            <a href="index.php?action=login"><input type="submit" value="Login"></a>
+            <a href="index.php?action=register"><input type="submit" value="Register"></a>
+        <?php else: ?>
+            <a href="index.php?action=logout"><input type="submit" value="Logout"></a>
+        <?php endif; ?>
     </div>
     <div class="img">
         <img src="icon/logo.jpeg" alt="Logo Avogadro">
@@ -22,7 +26,7 @@
 
     <div class="social-container">
         <a href="https://www.facebook.com/p/IIS-Amedeo-Avogadro-Torino-100072315053776/" target="_blank"><img
-                src="icon/fb.jpg" alt="Facebook"></a>
+                    src="icon/fb.jpg" alt="Facebook"></a>
         <a href="https://www.instagram.com/avogadro_torino_official/" target="_blank"><img src="icon/ig.jpg"
                                                                                            alt="Instagram"></a>
         <a href="https://www.youtube.com/channel/UCCp9YoDfdV1GMUwQtlNVz9w" target="_blank"><img src="icon/yb.jpg"
@@ -68,7 +72,7 @@
                 ciclomotori Euro 0 e 1.
             <p>
                 <a href="http://www.comune.torino.it/emergenzaambientale/" target="_blank"><b>Per maggiori
-                    informazioni</b></a>
+                        informazioni</b></a>
         </div>
         <div class="box">
             <h1><b>Censimento permanente della popolazione e delle abitazioni</b></h1><br>
@@ -170,7 +174,7 @@
         <tr>
 
             <td><a href="https://servizi.comune.torino.it/consiglio/prg/txt/ComposizioneConsiglio.html" target="_blank">Organi
-                di governo</a></td>
+                    di governo</a></td>
             <td><a href="http://www.comune.torino.it/anagrafe/" target="_blank">Anagrafe e stato civile</a></td>
             <td><a href="http://www.comune.torino.it/" target="_blank">Notizie</a></td>
             <td><a href="http://www.comune.torino.it/albopretorio/" target="_blank">Documenti albo pretorio</a></td>
@@ -202,9 +206,9 @@
         <tr>
 
             <td><a href="hhttp://www.comune.torino.it/giunta/enti/enti-citta/index.shtml" target="_blank">Enti e
-                fondazioni</a></td>
+                    fondazioni</a></td>
             <td><a href="http://www.comune.torino.it/commercioeimpresa/" target="_blank">Attività produttive e
-                commercio</a></td>
+                    commercio</a></td>
             <td></td>
             <td><a href="http://www.comune.torino.it/servizionline/" target="_blank">Modulistica</a></td>
 
@@ -236,7 +240,7 @@
         <tr>
 
             <td><a href="http://www.comune.torino.it/albopretorio/" target="_blank"><b>AMMINISTRAZIONE
-                TRASPARENTE</b></a></td>
+                        TRASPARENTE</b></a></td>
             <td><a href="https://web.pasemplice.eu/PortaleDebitore/02008/01907990012/A0B0B1F558AA/index.do"
                    target="_blank"><b>CONTATTI</b></a></td>
             <td>

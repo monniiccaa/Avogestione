@@ -16,6 +16,9 @@
 <a href="index.php?action=update">
     <button>Modifica I tuoi Corsi</button>
 </a>
+<a href="index.php?action=delete">
+    <button>Cancella I tuoi Corsi</button>
+</a>
 
 <table>
     <tr>
@@ -29,28 +32,17 @@
 
     <?php /** @var Corsi $corso */
     foreach ($corsi as $corso): ?>
+    <tr>
+        <td><?= $corso->getTitolo() ?></td>
+        <td><?= $corso->getDescrizione() ?></td>
+        <td><?= $corso->getDataEOra() ?></td>
+        <td><?= $corso->getMaxPartecipanti() ?></td>
+        <td><?php
+            $user = Users::getById($corso->getIdOrganizzatore());
+            echo $user->getUsername() ?></td>
+        <td><?= $corso->getAula() ?></td>
 
-        <tr>
-            <td><?= $corso->getTitolo() ?></td>
-            <td><?= $corso->getDescrizione() ?></td>
-            <td><?= $corso->getDataEOra() ?></td>
-            <td><?= $corso->getMaxPartecipanti() ?></td>
-            <td><?php
-                $user = Users::getById($corso->getIdOrganizzatore());
-                echo $user->getUsername() ?></td>
-            <td><?= $corso->getAula() ?></td>
-
-            <?php if ($_SESSION['id'] == $corso->getIdOrganizzatore()): ?>
-                <td>
-                    <form action="index.php?action=update" method="post">
-                        <input type="hidden" name="id" value="<?= $corso->getId() ?>"">
-                        <input type="submit" value="Modifica">
-                    </form>
-                </td>
-            <?php endif; ?>
-        </tr>
-
-    <?php endforeach; ?>
+        <?php endforeach; ?>
 </table>
 
 </body>

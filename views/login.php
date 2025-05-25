@@ -23,7 +23,7 @@
     <input type="password" id="password" name="password" required><br>
     <input type="submit" value="Invio">
 </form>
-
+<p>Altrimenti Registrati <a href="index.php?action=register">qui!</a></p>
 
 </body>
 </html>

@@ -43,7 +43,7 @@ switch ($action) {
     case 'iscrizioni':
         AuthController::requireLogin();
         IscrizioniController::showAllUserSubscriptions();
-        break;unsubscribe
+        break;
     case 'unsubscribe':
         AuthController::requireLogin();
         IscrizioniController::unsubscribe();

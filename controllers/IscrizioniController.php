@@ -20,7 +20,7 @@ class IscrizioniController
             $idCorso = $_POST['id'];
 
 
-            if (Iscrizioni::!isFull($idCorso)) {
+            if (Iscrizioni::isFull($idCorso)) {
                 echo '<script>alert("Il corso a cui stai cercando di iscriverti è pieno.")</script>';
             } else {
                 echo 'Iscrizione avvenuta con successo';

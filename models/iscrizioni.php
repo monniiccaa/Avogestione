@@ -4,7 +4,7 @@ require_once 'conn.php';
 
 class Iscrizioni
 {
-    public static function addIscrizione($idCorso)
+    private function addIscrizione($idCorso)
     {
         global $conn;
         $stmt = $conn->prepare("INSERT INTO iscrizioni (userId,corsoId) VALUES (:userId,:corsoId)");

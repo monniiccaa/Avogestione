@@ -13,30 +13,29 @@ class IscrizioniController
         }
         require 'views/ViewIscrizione.php';
     }
-    
+
     public static function subscribe(): void
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $idCorso = $_POST['id'];
+            $idUser = $_SESSION['id'];
 
-
-            if (Iscrizioni::!isFull($idCorso)) {
+            if (!Iscrizioni::isFull($idUser, $idCorso)) {
                 echo '<script>alert("Il corso a cui stai cercando di iscriverti è pieno.")</script>';
             } else {
                 echo 'Iscrizione avvenuta con successo';
             }
         }
 
-        $action = "subscribe";
-        require 'views/ViewIscrizione.php';
+        self::showAllUserSubscriptions();
     }
 
     public static function unsubscribe(): void
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $id = $_POST['id'];
-
-            if (Iscrizioni::deleteIscrizione($id)) {
+            $user = $_SESSION['id'];
+            if (Iscrizioni::deleteIscrizione($user, $id)) {
                 $action = "unsubscribe";
                 require 'views/ViewIscrizione.php';
                 exit();

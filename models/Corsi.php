@@ -95,7 +95,17 @@ class Corsi implements JsonSerializable
         $stmt->bindParam(":titolo", $titolo, PDO::PARAM_STR);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return new Corsi($result["id"], $result["titolo"], $result["descrizione"], $result["dataEOra"], $result["maxPartecipanti"], $result["idOrganizzatore"], $result["aula"]);
+        return new Corsi($result["id"], $result["titolo"], $result["descrizione"], $result["dataEORA"], $result["maxPartecipanti"], $result["idOrganizzatore"], $result["aula"]);
+    }
+
+    public static function getById($id): Corsi
+    {
+        global $conn;
+        $stmt = $conn->prepare("SELECT * FROM corsi WHERE id=:id");
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return new Corsi($result["id"], $result["titolo"], $result["descrizione"], $result["dataEORA"], $result["maxPartecipanti"], $result["idOrganizzatore"], $result["aula"]);
     }
 
     public static function getCorsiOfUser(int $idUser): array

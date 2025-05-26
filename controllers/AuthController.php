@@ -52,14 +52,15 @@ class AuthController
     {
         AuthController::requireLogin();
         if ($ruolo != Roles::from($_SESSION['ruolo'])) {
-            echo '<p>Accesso Negato</p>';
-            exit();
+            echo '<script>alert("Devi avere il ruolo di Organizzatore")</script>';
+            header('Location: index.php?action=corsi');
         }
     }
 
     public static function requireLogin(): void
     {
         if (!isset($_SESSION['id'])) {
+            echo '<script> alert("Devi prima fare il login.")</script>';
             header('Location: index.php?action=login');
         }
 

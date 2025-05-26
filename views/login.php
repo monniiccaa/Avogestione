@@ -3,22 +3,20 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="style/homePage.css"/>
-    <link rel="stylesheet" href="style/login.css"/>
+    <link rel="stylesheet" href="/style/homePage.css"/>
+    <link rel="stylesheet" href="/style/login.css"/>
     <title>Login - Avogestione</title>
 </head>
 <body>
 <header class="header">
     <div class="top-bar">
         <h1>Istituto Amedeo Avogadro - Torino</h1>
-        <div class="auth-buttons">
-            <button onclick="location.href='registrazione.html'">Registrati</button>
-        </div>
+        <?php require_once "templates/BottoniAuth.php" ?>
     </div>
 
     <div class="logo-container">
-        <a href="index.php?action=home">
-            <img src="icon/logo.png" alt="Logo Istituto Avogadro"/>
+        <a href="/index.php?action=home">
+            <img src="/icon/logo.png" alt="Logo Istituto Avogadro"/>
         </a>
         <h2>Portale Avogestione</h2>
         <nav class="social-nav">
@@ -41,7 +39,7 @@
         <h2>Bentornato</h2>
         <h3>Inserisci i tuoi dati per continuare</h3>
 
-        <form action="index.php?action=login" method="post">
+        <form action="/index.php?action=login" method="post">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
 

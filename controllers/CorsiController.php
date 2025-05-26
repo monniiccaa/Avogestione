@@ -49,7 +49,6 @@ class CorsiController
 
     public static function update(): void
     {
-
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $id = $_POST['id'];
             $titolo = $_POST['titolo'];

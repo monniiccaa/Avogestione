@@ -36,8 +36,18 @@ switch ($action) {
         AuthController::HasRole(Roles::ORGANIZZATORE);
         CorsiController::delete();
         break;
-
-
+    case 'subscribe':
+        AuthController::requireLogin();
+        IscrizioniController::subscribe();
+        break;
+    case 'iscrizioni':
+        AuthController::requireLogin();
+        IscrizioniController::showAllUserSubscriptions();
+        break;unsubscribe
+    case 'unsubscribe':
+        AuthController::requireLogin();
+        IscrizioniController::unsubscribe();
+        break;
     case 'logout':
         AuthController::logout();
         break;

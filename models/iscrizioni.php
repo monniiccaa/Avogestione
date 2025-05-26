@@ -4,7 +4,7 @@ require_once 'conn.php';
 
 class Iscrizioni
 {
-    public static function addIscrizione($idCorso)
+    private function addIscrizione($idCorso)
     {
         global $conn;
         $stmt = $conn->prepare("INSERT INTO iscrizioni (userId,corsoId) VALUES (:userId,:corsoId)");
@@ -39,11 +39,11 @@ class Iscrizioni
         return false;
     }
 
-    public static function getAllUserSubscriptions()
+    public static function getAllUserSubscriptions($id)
     {
         global $conn;
         $stmt = $conn->prepare("SELECT * FROM iscrizioni JOIN corsi ON iscrizioni.corsoId=corsi.id WHERE iscrizioni.userId=:userId");
-        $stmt->bindParam(":userId", $_SESSION["user_id"], PDO::PARAM_INT);
+        $stmt->bindParam(":userId", $id, PDO::PARAM_INT);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $subscriptions = [];

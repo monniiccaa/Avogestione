@@ -6,7 +6,7 @@ class IscrizioniController
 {
     public static function showAllUserSubscriptions(): void
     {
-        $iscrizioni = Iscrizioni::getAllUserSubscriptions();
+        $iscrizioni = Iscrizioni::getAllUserSubscriptions($_SESSION['id']);
         if (empty($iscrizioni)) {
             echo "Non sei iscritto a nessun corso";
             exit();
@@ -20,7 +20,7 @@ class IscrizioniController
             $idCorso = $_POST['id'];
 
 
-            if (Iscrizioni::!isFull()) {
+            if (Iscrizioni::!isFull($idCorso)) {
                 echo '<script>alert("Il corso a cui stai cercando di iscriverti è pieno.")</script>';
             } else {
                 echo 'Iscrizione avvenuta con successo';

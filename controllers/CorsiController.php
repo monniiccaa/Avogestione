@@ -43,7 +43,7 @@ class CorsiController
         }
 
         $action = "create";
-        require 'views/FormCorsi.php';
+        require 'views/creaCorso.php';
     }
 
 
@@ -73,7 +73,7 @@ class CorsiController
             exit();
         }
         $action = "update";
-        require_once 'views/FormCorsi.php';
+        require_once 'views/creaCorso.php';
     }
 
     public static function delete(): void
@@ -82,7 +82,7 @@ class CorsiController
             $id = $_POST['id'];
 
             if (Corsi::delete($id)) {
-                header('Location:index.php');
+                header('Location:index.php?action=corsi');
                 exit();
             } else {
                 echo "Errore nell'eliminazione del corso";

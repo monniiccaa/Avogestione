@@ -1,0 +1,98 @@
+/* login.css */
+
+/* Container centrale login */
+.login-container {
+  max-width: 400px;
+  margin: 40px auto 60px auto;
+  background-color: white;
+  border: 4px solid #FFD700; /* giallo oro */
+  border-radius: 10px;
+  padding: 30px 25px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  font-family: Verdana, sans-serif;
+  color: #003366; /* blu scuro coerente */
+  text-align: center;
+}
+
+/* Titoli */
+.login-container h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.login-container h3 {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+  color: #003366cc; /* blu leggermente più chiaro */
+}
+
+/* Form */
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Label */
+.login-container label {
+  text-align: left;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #003366;
+}
+
+/* Input text e password */
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  padding: 12px 10px;
+  font-size: 1rem;
+  border: 2px solid #003366;
+  border-radius: 5px;
+  outline-color: #FFD700; /* giallo al focus */
+  transition: border-color 0.3s ease;
+}
+
+.login-container input[type="text"]:focus,
+.login-container input[type="password"]:focus {
+  border-color: #FFD700;
+}
+
+/* Pulsante submit */
+.login-container input[type="submit"] {
+  background-color: #FFD700;
+  color: #003366;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.login-container input[type="submit"]:hover,
+.login-container input[type="submit"]:focus {
+  background-color: #003366;
+  color: #FFD700;
+  outline: none;
+}
+
+/* Select per il ruolo - stile uniforme */
+.login-container select {
+  padding: 12px 10px;
+  font-size: 1rem;
+  border: 2px solid #003366;
+  border-radius: 5px;
+  background-color: white;
+  color: black; /* scritta nera */
+}
+
+/* Nessun cambiamento di colore al focus */
+.login-container select:focus {
+  border-color: #003366;
+  outline: none;
+}
+
+
+

@@ -13,7 +13,7 @@ switch ($action) {
         break;
 
     case 'corsi':
-        AuthController::requireLogin();
+//        AuthController::requireLogin();
         CorsiController::showAll();
         break;
 

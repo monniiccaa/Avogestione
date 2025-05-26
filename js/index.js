@@ -20,5 +20,5 @@ const updateInformazioniForm = () => {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('corso').addEventListener("change", updateInformazioniForm);
+    document.getElementById('corso').addEventListener("click", updateInformazioniForm);
 });

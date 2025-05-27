@@ -4,7 +4,7 @@ $user = "AvoGestione";
 $password = "AvoGestione";
 try {
     $conn = new PDO($dsn, $user, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
 } catch (PDOException $e) {
     die("Errore di connessione: " . $e->getMessage());
 }

@@ -21,7 +21,7 @@ class IscrizioniController
             $idUser = $_SESSION['id'];
 
             if (!Iscrizioni::isFull($idUser, $idCorso)) {
-                echo '<script>alert("Il corso a cui stai cercando di iscriverti è pieno.")</script>';
+                echo '<script>alert("Il corso a cui stai cercando di iscriverti è pieno o ti sei già iscritto")</script>';
             } else {
                 echo 'Iscrizione avvenuta con successo';
             }

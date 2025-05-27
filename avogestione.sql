@@ -29,6 +29,7 @@ CREATE TABLE corsi
 CREATE TABLE iscrizioni
 (
     userId  int(11) NOT NULL REFERENCES users (id),
-    corsoId int(11) NOT NULL REFERENCES corsi (id)
+    corsoId int(11) NOT NULL REFERENCES corsi (id),
+    CONSTRAINT SoloUnaVolta UNIQUE (userId, corsoId)
 );
 

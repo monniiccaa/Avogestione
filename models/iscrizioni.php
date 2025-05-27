@@ -52,7 +52,7 @@ class Iscrizioni
         if ($nIscrizioni["nIscrizioni"] < $maxPartecipanti["maxPartecipanti"]) {
             return self::addIscrizione($idUser, $idCorso);
         }
-        return true;
+        return false;
     }
 
     public static function getAllUserSubscriptions($id): array

@@ -32,7 +32,7 @@
 
 <main>
     <section class="navigation">
-        <?= require_once "templates/navigation.php" ?>
+        <?php require_once "templates/navigation.php" ?>
     </section>
 
     <section class="login-container">

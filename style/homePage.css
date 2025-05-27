@@ -1,4 +1,3 @@
-/* Reset base */
 html, body {
   height: 100%;
   width: 100%;
@@ -153,7 +152,6 @@ html, body {
   }
 }
 
-
 /* IN EVIDENZA */
 .in-evidenza .iframe-container {
   display: flex;
@@ -253,6 +251,7 @@ footer {
   text-decoration: underline;
 }
 
+/* BANNER COOKIE */
 .cookie-banner {
   position: fixed;
   bottom: 0;
@@ -276,4 +275,53 @@ footer {
 .cookie-banner a {
   color: #ADD8E6;
   text-decoration: underline;
+}
+
+/* Sezioni aggiuntive: Chi siamo & FAQ */
+.info-box {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 25px;
+  background-color: white;
+  border: 4px solid #FFD700;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  font-family: Verdana, sans-serif;
+  color: #003366;
+}
+
+.info-box h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #003366;
+}
+
+.info-box p {
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+.faq h4 {
+  font-size: 1.1rem;
+  margin-top: 20px;
+  color: #003366;
+}
+
+.faq p {
+  margin-top: 5px;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+/* Testo di Chi siamo e FAQ in nero */
+.chi-siamo, .faq {
+  color: #000000; /* nero */
+  font-family: Verdana, sans-serif;
+}
+
+/* Titoli (h2, h3) dentro queste sezioni possono restare blu se vuoi */
+.chi-siamo h2, .faq h2 {
+  color: #003366; /* blu scuro */
 }

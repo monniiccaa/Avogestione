@@ -20,7 +20,7 @@
     </div>
     <div class="logo-container">
         <a href="/index.php?action=home">
-            <img src="icon/logo.png" alt="Logo Istituto Avogadro"/>
+            <img src="/icon/logo.png" alt="Logo Istituto Avogadro"/>
         </a>
         <h2>Portale Avogestione</h2>
         <nav class="social-nav">
@@ -37,14 +37,14 @@
 
 <main>
     <section class="navigation">
-        <?= require_once "templates/navigation.php" ?>
+        <?php require_once "templates/navigation.php" ?>
     </section>
 
     <section class="login-container">
         <h2>Benvenuto</h2>
         <h3>Inserisci i tuoi dati per continuare</h3>
 
-        <form action="index.php?action=register" method="post">
+        <form action="/index.php?action=register" method="post">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required/>
 

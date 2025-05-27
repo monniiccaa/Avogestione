@@ -21,7 +21,7 @@ class IscrizioniController
             $idCorso = $_POST['id'];
             $idUser = $_SESSION['id'];
 
-            if (Iscrizioni::isFull($idUser, $idCorso)) {
+            if (!Iscrizioni::isFull($idUser, $idCorso)) {
                 echo '<script>alert("Il corso a cui stai cercando di iscriverti è pieno o ti sei già iscritto");window.location.replace("/index.php?action=corsi");</script>';
                 exit();
             } else {

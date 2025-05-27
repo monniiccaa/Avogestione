@@ -38,14 +38,17 @@ class Users
     }
 
 
-    public static function getByUsername($username): Users
+    public static function getByUsername($username): ?Users
     {
         global $conn;
         $stmt = $conn->prepare("SELECT * FROM users WHERE username=:username");
         $stmt->bindParam(":username", $username);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return new Users($result["id"], $result['username'], $result['password'], $result['ruolo']);
+        if ($result !== false) {
+            return new Users($result["id"], $result['username'], $result['password'], $result['ruolo']);
+        }
+        return null;
     }
 
     public static function getById($id): Users

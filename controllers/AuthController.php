@@ -13,14 +13,15 @@ class AuthController
             $password = $_POST['password'];
             $user = Users::getByUsername($username);
 
-            if (password_verify($password, $user->getPassword())) {
+
+            if ($user !== null && password_verify($password, $user->getPassword())) {
                 $_SESSION['id'] = $user->getId();
                 $_SESSION['username'] = $user->getUsername();
                 $_SESSION['ruolo'] = $user->getRuolo();
                 header('Location: index.php?action=home');
             }
 
-            echo "<p> Username o password errata </p>";
+            echo "<script> alert('Username o password errata') </script>";
         }
 
         require_once 'views/login.php';

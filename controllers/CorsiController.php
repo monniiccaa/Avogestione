@@ -38,7 +38,7 @@ class CorsiController
                 header('Location:index.php');
                 exit();
             } else {
-                echo 'Errore nella creazione del corso.';
+                echo "<script>alert('Errore creazione corso dal corso.')</script>";
             }
         }
 
@@ -60,7 +60,7 @@ class CorsiController
             if (Corsi::update($id, $titolo, $descrizione, $maxPartecipanti, $dataEOra, $aula)) {
                 header('Location:index.php?action=corsi');
             } else {
-                echo 'Errore nella modifica del corso.';
+                echo "<script>alert('Errore creazione corso dal corso.')</script>";
             }
 
         }
@@ -68,7 +68,7 @@ class CorsiController
 
         $corsi = Corsi::getCorsiOfUser($_SESSION['id']);
         if (empty($corsi)) {
-            echo "<p>Non hai nessun corso da modificare. Crea uno <a href='index.php?action=create'>qui!</a></p>";
+            echo "<p>Non hai nessun corso da modificare. Crea uno <a href='/index.php?action=create'>qui!</a></p>";
             exit();
         }
         $action = "update";
@@ -90,7 +90,8 @@ class CorsiController
 
         $corsi = Corsi::getCorsiOfUser($_SESSION['id']);
         if (empty($corsi)) {
-            echo "<p>Non hai nessun corso da Eliminare. Crea uno <a href='index.php?action=create'>qui!</a></p>";
+            echo "<p>Non hai nessun corso da Eliminare. Crea uno <a href='/index.php?action=create'>qui!</a></p>";
+
             exit();
         }
         require_once 'views/DeleteCorsi.php';

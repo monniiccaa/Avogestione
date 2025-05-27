@@ -8,7 +8,7 @@ class IscrizioniController
     {
         $iscrizioni = Iscrizioni::getAllUserSubscriptions($_SESSION['id']);
         if (empty($iscrizioni)) {
-            echo "Non sei iscritto a nessun corso";
+            echo "<script>alert('Non sei iscritto a nessun corso')</script>";
             exit();
         }
         require 'views/ViewIscrizione.php';
@@ -40,7 +40,7 @@ class IscrizioniController
                 require 'views/ViewIscrizione.php';
                 exit();
             } else {
-                echo "Errore nella disicrizione dal corso.";
+                echo "<script>alert('Errore cancellare la iscrizione dal corso.')</script>";
             }
         }
 

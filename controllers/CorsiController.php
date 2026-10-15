@@ -8,10 +8,6 @@ class CorsiController
     public static function showAll(): void
     {
         $corsi = Corsi::getAll();
-        if (empty($corsi)) {
-            echo "Nessuno corso trovato";
-            exit();
-        }
         require 'views/ViewCorsi.php';
     }
 
